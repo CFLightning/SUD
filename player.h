@@ -2,6 +2,7 @@
 #define _player_h_included
 
 #include "character.h"
+#include "item.h"
 #include "vector"
 
 class Player : public Character

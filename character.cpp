@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void Character::takeDMG(character enemy)
+void Character::takeDMG(Character enemy)
 {
 	this->hp -= enemy.getDMG();
 }

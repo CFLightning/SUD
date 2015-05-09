@@ -3,6 +3,8 @@
 
 #include "vector"
 #include "event.h"
+#include "item.h"
+#include "player.h"
 
 class Shop: public Event
 {

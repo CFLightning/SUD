@@ -7,14 +7,14 @@ using namespace std;
 
 class Character
 {
-	virtual void show() = 0;
+	//virtual void show() = 0;
 	protected:
 	 int hp, baseHp, maxHp, baseDmg, dmg, lvl;
 	 string description, name;
 	public:
-	 void takeDMG(character);
+	 void takeDMG(Character);
 	 int getDMG();
 	 void show();
-}
+};
 
 #endif

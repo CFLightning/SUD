@@ -43,6 +43,11 @@ bool Item::isNotUsable()
 		return false;
 }
 
+int Item::getPrice()
+{
+	return this->price;
+}
+
 ostream& operator<<(ostream& ostr, const Item& item)
 {
 	ostr << item.name;

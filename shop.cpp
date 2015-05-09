@@ -10,7 +10,7 @@ bool Shop::isShop()
 
 bool Shop::buy(Item item, Player player)
 {
-	if(player.getGold < item.price())
+	if(player.getGold() < item.getPrice())
 	{	
 		cout << "Not enough monies\n";
 		
@@ -40,5 +40,5 @@ bool Shop::sell(Item item, Player player)
 void Shop::showStore()
 {
 	for(int i = 0; i < this->store.size(); i++)
-		cout << store[i] << "\t" << store[i].price() << "\n";
+		cout << store[i] << "\t" << store[i].getPrice() << "\n";
 }
