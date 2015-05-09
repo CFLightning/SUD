@@ -13,7 +13,7 @@ class Event
 	
 	public:
 		friend ostream& operator<<(ostream&, const Event&);
-		int result() = 0;
+		//int result() = 0;
 };
 
 #endif

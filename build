@@ -1,0 +1,4 @@
+#g++ *.cpp -o main
+g++ main.cpp shop.cpp item.cpp -o main
+chmod u+x main
+./main

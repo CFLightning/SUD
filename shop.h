@@ -7,7 +7,7 @@
 class Shop: public Event
 {
 	private:
-		vector<item> store;
+		vector<Item> store;
 	
 	public:
 		bool sell(Item, Player);

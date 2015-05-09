@@ -16,11 +16,14 @@ class Item
 		int slot;		// 0 - head, 1 - chest, 2 - weapon, 3 - none
 	
 	public:
-		friend ostream& operator<<(ostream&, const item&);
+		friend ostream& operator<<(ostream&, const Item&);
 		int getPrice();
 		bool isHelmet();
 		bool isArmor();
 		bool isWeapon();
-}
+		bool isNotUsable();
+		
+		Item(string, int, int, int, int);
+};
 
 #endif
