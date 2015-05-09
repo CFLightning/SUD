@@ -18,7 +18,8 @@ bool Shop::buy(Item item, Player player)
 	}
 	else
 	{
-		player.spendGold(item.price());
+		player.spendGold(item.getPrice());
+		player.takeItem(item);
 		
 		return true;
 	}
@@ -28,7 +29,16 @@ bool Shop::buy(Item item, Player player)
 
 bool Shop::sell(Item item, Player player)
 {
-	cout << "Sold item: " << item << "\nNo refunds\n";
+	cout << "Sold item: " << item << "\nNo returns\n";
 	
-	player.
+	player.addGold(item.getPrice());
+	player.giveItem(item);
+	
+	return true;
+}
+
+void Shop::showStore()
+{
+	for(int i = 0; i < this->store.size(); i++)
+		cout << store[i] << "\t" << store[i].price() << "\n";
 }
