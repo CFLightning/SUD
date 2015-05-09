@@ -14,6 +14,7 @@ class Character
 	public:
 	 void takeDMG(character);
 	 int getDMG();
+	 void show();
 }
 
 #endif
