@@ -9,7 +9,7 @@ class Character
 {
 	virtual void show() = 0;
 	protected:
-	 int hp, baseHp, dmg, lvl;
+	 int hp, baseHp, maxHp, baseDmg, dmg, lvl;
 	 string description, name;
 	public:
 	 void takeDMG(character);
