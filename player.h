@@ -20,6 +20,7 @@ class Player : public Character
 	 void takeItem(Item);
 	 void giveItem(Item);
 	 void showInventory();
+	 void update();
 	 Player();
 };
 
