@@ -16,6 +16,10 @@ class Player : public Character
 	 int getGold();
 	 void addGold(int);
 	 void spendGold(int);
+	 void takeItem(Item);
+	 void giveItem(Item);
 	 void showInventory();
 	 Player();
 };
+
+#endif

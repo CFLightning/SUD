@@ -8,6 +8,8 @@ class Npc : public Character
 	private:
 	 Item drop
 	public:
-	 Item dropItem(player);
+	 void dropItem(player);
 	 Npc(string, int, int, Item);
 };
+
+#endif

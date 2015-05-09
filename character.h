@@ -15,3 +15,5 @@ class Character
 	 void takeDMG(character);
 	 int getDMG();
 }
+
+#endif
