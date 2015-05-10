@@ -41,8 +41,9 @@ bool Shop::sell(int item, Item type, Player player)
 
 void Shop::showStore()
 {
+	cout << "Nazwa \tCena \tHP \tDMG\n";
 	for(int i = 0; i < this->store.size(); i++)
-		cout << store[i] << "\t" << store[i].getPrice() << "\n";
+		cout << store[i] << "\t" << store[i].getPrice() << "\t" << store[i].getHpBonus() << "\t" << store[i].getDmgBonus() << "\n";
 }
 
 Shop::Shop(vector<Item> store)

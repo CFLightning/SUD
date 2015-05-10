@@ -25,7 +25,7 @@ class Player: public Character
 	 void giveItem(int);
 	 void showInventory();
 	 void update();
-	 Player(string, int, int, int, int); //:Character();
+	 Player(string, int, int, int, int);
 };
 
 #endif

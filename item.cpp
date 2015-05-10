@@ -15,7 +15,7 @@ Item::Item(string name, int price, int dmg, int hp, int slot)
 
 Item::Item()
 {
-	this->name = "ExampleItem";
+	this->name = "No item";
 	this->price = 0;
 	this->hp = 0;
 	this->dmg = 0;

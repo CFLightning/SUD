@@ -7,12 +7,14 @@ using namespace std;
 
 Player::Player(string name, int baseHp, int baseDmg, int lvl, int gold):Character(name, baseHp, baseDmg, lvl)
 {
-	
+	for(int i = 0; i < 3; i++)
+		this->eq.push_back(Item());
+		
 	this->maxHp = this->baseHp + this->eq[0].getHpBonus() + this->eq[1].getHpBonus() + this->eq[2].getHpBonus() + this->lvl;
 	this->dmg = this->baseDmg + this->eq[0].getDmgBonus() + this->eq[1].getDmgBonus() + this->eq[2].getDmgBonus() + this->lvl;
 	
-	this->gold=gold;
-	this->hp=this->maxHp;
+	this->gold = gold;
+	this->hp = this->maxHp;
 }
 
 void Player::update()
@@ -28,7 +30,7 @@ int Player::getGold()
 
 void Player::showEq()
 {
-	for(int i = 0; i<this->eq.size(); i++)
+	for(int i = 0; i < this->eq.size(); i++)
 		cout << eq[i] << "\n";
 }
 

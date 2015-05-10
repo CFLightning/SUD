@@ -8,9 +8,17 @@ using namespace std;
 class Character
 {
 	protected:
-		int hp, baseHp, maxHp, baseDmg, dmg, lvl;
-		string description, name;
+		int hp;
+		int baseHp;
+		int maxHp;
+		int baseDmg;
+		int dmg;
+		int lvl;
+		
+		string description;
+		string name;
 		Character(string, int, int, int);
+
 	public:
 		void takeDMG(Character);
 		int getDMG();
