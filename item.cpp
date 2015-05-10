@@ -1,3 +1,5 @@
+#include "string"
+#include "iostream"
 #include "item.h"
 
 using namespace std;
@@ -9,6 +11,15 @@ Item::Item(string name, int price, int dmg, int hp, int slot)
 	this->hp = hp;
 	this->dmg = dmg;
 	this->slot = slot;
+}
+
+Item::Item()
+{
+	this->name = "ExampleItem";
+	this->price = 0;
+	this->hp = 0;
+	this->dmg = 0;
+	this->slot = 3;
 }
 
 bool Item::isHelmet()
@@ -53,4 +64,14 @@ ostream& operator<<(ostream& ostr, const Item& item)
 	ostr << item.name;
 	
 	return ostr;
+}
+
+int Item::getHpBonus()
+{
+	return this->hp;
+}
+
+int Item::getDmgBonus()
+{
+	return this->dmg;
 }

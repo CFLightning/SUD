@@ -1,11 +1,11 @@
 #ifndef _player_h_included
 #define _player_h_included
 
+#include "vector"
 #include "character.h"
 #include "item.h"
-#include "vector"
 
-class Player : public Character
+class Player: public Character
 {
 	private:
 	 int gold;

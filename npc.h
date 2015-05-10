@@ -1,15 +1,18 @@
 #ifndef _npc_h_included
 #define _npc_h_included
  
+#include "string"
 #include "character.h"
+#include "player.h"
+#include "item.h"
 
-class Npc : public Character
+class Npc: public Character
 {
 	private:
-	 Item drop
+	 Item drop;
 	public:
-	 void dropItem(player);
-	 Npc(string, int, int, Item);
+	 void dropItem(Player);
+	 Npc(string, int, int, Item, int);
 };
 
 #endif

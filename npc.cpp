@@ -1,3 +1,5 @@
+#include "string"
+#include "item.h"
 #include "npc.h"
 
 using namespace std;

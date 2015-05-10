@@ -1,5 +1,8 @@
-#include "character.h"
 #include "string"
+#include "vector"
+#include "iostream"
+
+#include "character.h"
 
 using namespace std;
 
@@ -19,7 +22,6 @@ void Character::show()
 		 << this->name << "\n" 
 		 << this->hp << "/" << this->baseHp+this->lvl << "HP\n"
 		 << this->dmg << "dph\n"
-		 << this->gold << "dublonow\n"
 		 << this->lvl << "poziom\n"
 		 << this->description << "\n";
 }

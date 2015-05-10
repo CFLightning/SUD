@@ -1,6 +1,7 @@
-#include "player.h"
 #include "vector"
 #include "iostream"
+#include "item.h"
+#include "player.h"
 
 using namespace std;
 
@@ -9,8 +10,8 @@ Player::Player(string name, int baseHp, int baseDmg, int gold)
 	this->baseHp = baseHp;
 	this->baseDmg = baseDmg;
 	
-	this->maxHp = this->baseHp + this->eq[0] + this->eq[1] + this->eq[2] + this->lvl;
-	this->dmg = this->baseDmg + this->eq[0] + this->eq[1] + this->eq[2] + this->lvl;
+	this->maxHp = this->baseHp + this->eq[0].hp + this->eq[1].hp + this->eq[2].hp + this->lvl;
+	this->dmg = this->baseDmg + this->eq[0].dmg + this->eq[1].dmg + this->eq[2].dmg + this->lvl;
 	
 	this->name=name;
 	this->gold=gold;
@@ -20,8 +21,8 @@ Player::Player(string name, int baseHp, int baseDmg, int gold)
 
 void Player::update()
 {
-	this->maxHp = this->baseHp + this->eq[0] + this->eq[1] + this->eq[2] + this->lvl;
-	this->dmg = this->baseDmg + this->eq[0] + this->eq[1] + this->eq[2] + this->lvl;
+	this->maxHp = this->baseHp + this->eq[0].hp + this->eq[1].hp + this->eq[2].hp + this->lvl;
+	this->dmg = this->baseDmg + this->eq[0].dmg + this->eq[1].dmg + this->eq[2].dmg + this->lvl;
 }
 
 int Player::getGold()
@@ -54,6 +55,3 @@ void Player::giveItem(int item)
 {
 	this->inventory.erase(item);
 }
-
-
-

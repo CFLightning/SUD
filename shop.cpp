@@ -1,5 +1,7 @@
 #include "iostream"
 #include "shop.h"
+#include "item.h"
+#include "player.h"
 
 using namespace std;
 

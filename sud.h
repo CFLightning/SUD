@@ -2,7 +2,9 @@
 #define _sud_h_defined
 
 #include "player.h"
-//#include "npc.h"
+#include "character.h"
+#include "event.h"
+#include "npc.h"
 #include "item.h"
 #include "shop.h"
 

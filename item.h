@@ -3,6 +3,7 @@
 
 #include "iostream"
 #include "string"
+#include "iostream"
 
 using namespace std;
 
@@ -22,8 +23,11 @@ class Item
 		bool isArmor();
 		bool isWeapon();
 		bool isNotUsable();
+		int getHpBonus();
+		int getDmgBonus();
 		
 		Item(string, int, int, int, int);
+		Item();
 };
 
 #endif
