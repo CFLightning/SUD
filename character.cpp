@@ -16,12 +16,10 @@ int Character::getDMG()
 	return dmg;
 }
 
-void Character::show()
+Character::Character(string name, int baseHp, int baseDmg, int lvl)
 {
-	cout << "\nStatystyki\n"
-		 << this->name << "\n" 
-		 << this->hp << "/" << this->baseHp+this->lvl << "HP\n"
-		 << this->dmg << "dph\n"
-		 << this->lvl << "poziom\n"
-		 << this->description << "\n";
+	this->name = name;
+	this->baseHp = baseHp;
+	this->baseDmg = baseDmg;
+	this->lvl = lvl;
 }

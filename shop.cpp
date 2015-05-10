@@ -29,11 +29,11 @@ bool Shop::buy(Item item, Player player)
 	return false;
 }
 
-bool Shop::sell(Item item, Player player)
+bool Shop::sell(int item, Item type, Player player)
 {
-	cout << "Sold item: " << item << "\nNo returns\n";
+	cout << "Sold item: " << type << "\nNo returns\n";
 	
-	player.addGold(item.getPrice());
+	player.addGold(type.getPrice());
 	player.giveItem(item);
 	
 	return true;
@@ -43,4 +43,9 @@ void Shop::showStore()
 {
 	for(int i = 0; i < this->store.size(); i++)
 		cout << store[i] << "\t" << store[i].getPrice() << "\n";
+}
+
+Shop::Shop(vector<Item> store)
+{
+	this->store = store;
 }

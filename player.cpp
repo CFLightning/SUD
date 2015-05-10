@@ -5,24 +5,20 @@
 
 using namespace std;
 
-Player::Player(string name, int baseHp, int baseDmg, int gold)
+Player::Player(string name, int baseHp, int baseDmg, int lvl, int gold):Character(name, baseHp, baseDmg, lvl)
 {
-	this->baseHp = baseHp;
-	this->baseDmg = baseDmg;
 	
-	this->maxHp = this->baseHp + this->eq[0].hp + this->eq[1].hp + this->eq[2].hp + this->lvl;
-	this->dmg = this->baseDmg + this->eq[0].dmg + this->eq[1].dmg + this->eq[2].dmg + this->lvl;
+	this->maxHp = this->baseHp + this->eq[0].getHpBonus() + this->eq[1].getHpBonus() + this->eq[2].getHpBonus() + this->lvl;
+	this->dmg = this->baseDmg + this->eq[0].getDmgBonus() + this->eq[1].getDmgBonus() + this->eq[2].getDmgBonus() + this->lvl;
 	
-	this->name=name;
 	this->gold=gold;
 	this->hp=this->maxHp;
-	this->lvl=1;
 }
 
 void Player::update()
 {
-	this->maxHp = this->baseHp + this->eq[0].hp + this->eq[1].hp + this->eq[2].hp + this->lvl;
-	this->dmg = this->baseDmg + this->eq[0].dmg + this->eq[1].dmg + this->eq[2].dmg + this->lvl;
+	this->maxHp = this->baseHp + this->eq[0].getHpBonus() + this->eq[1].getHpBonus() + this->eq[2].getHpBonus() + this->lvl;
+	this->dmg = this->baseDmg + this->eq[0].getDmgBonus() + this->eq[1].getDmgBonus() + this->eq[2].getDmgBonus() + this->lvl;
 }
 
 int Player::getGold()
@@ -53,5 +49,16 @@ void Player::takeItem(Item received)
 
 void Player::giveItem(int item)
 {
-	this->inventory.erase(item);
+	this->inventory.erase(inventory.begin() + item);
+}
+
+void Player::show()
+{
+	cout << "\nStatystyki\n"
+		 << this->name << "\n" 
+		 << this->hp << "/" << this->baseHp+this->lvl << "\tHP\n"
+		 << this->dmg << "\tdph\n"
+		 << this->lvl << "\tpoziom\n"
+		 << this->gold << "\tmunies\n"
+		 << this->description << "\n";
 }

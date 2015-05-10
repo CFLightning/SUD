@@ -12,7 +12,8 @@ class Shop: public Event
 		vector<Item> store;
 	
 	public:
-		bool sell(Item, Player);
+		Shop(vector<Item>);
+		bool sell(int, Item, Player);
 		bool buy(Item, Player);
 		void showStore();
 		bool isShop();

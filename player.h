@@ -2,8 +2,11 @@
 #define _player_h_included
 
 #include "vector"
+#include "string"
 #include "character.h"
 #include "item.h"
+
+using namespace std;
 
 class Player: public Character
 {
@@ -19,10 +22,10 @@ class Player: public Character
 	 void addGold(int);
 	 void spendGold(int);
 	 void takeItem(Item);
-	 void giveItem(Item);
+	 void giveItem(int);
 	 void showInventory();
 	 void update();
-	 Player();
+	 Player(string, int, int, int, int); //:Character();
 };
 
 #endif
