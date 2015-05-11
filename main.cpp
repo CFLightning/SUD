@@ -12,15 +12,20 @@ int main()
 	Item luk("Luk", 12, 2, 0, 2);
 	Item nusz("Noz", 10, 1, 0, 2);
 	
-	//Character antos("Antos", 10, 2, 1);
-	Player antos("Antos", 10, 2, 1, 0);				// bo jesteś kurwa biedakiem
-	antos.takeItem(luk);
-	antos.show();
-	
 	vector<Item> _items(3);
 	_items[0] = miecz;
 	_items[1] = luk;
 	_items[2] = nusz;
+	
+	Player antos("Antos", 10, 2, 1, 20);
+	antos.takeItem(_items[rand() % 3]);
+	antos.takeItem(_items[rand() % 3]);
+	antos.showEq();
+	antos.show();
+	antos.equipItem(1);
+	antos.showEq();
+	antos.showInventory();
+	antos.show();
 	
 	vector<Item> store;
 	
@@ -29,6 +34,10 @@ int main()
 	
 	Shop shop(store);
 	shop.showStore();
+	
+	shop.buy(2, antos);
+	antos.show();
+	antos.showInventory();
 	
 	return 0;
 }

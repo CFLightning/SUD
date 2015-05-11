@@ -10,9 +10,9 @@ bool Shop::isShop()
 	return true;
 }
 
-bool Shop::buy(Item item, Player player)
+bool Shop::buy(int item, Player player)
 {
-	if(player.getGold() < item.getPrice())
+	if(player.getGold() < this->store[item].getPrice())
 	{	
 		cout << "Not enough monies\n";
 		
@@ -20,8 +20,9 @@ bool Shop::buy(Item item, Player player)
 	}
 	else
 	{
-		player.spendGold(item.getPrice());
-		player.takeItem(item);
+		player.spendGold(this->store[item].getPrice());
+		cout << "\nBought item: " << this->store[item] << "\n";
+		player.takeItem(this->store[item]);
 		
 		return true;
 	}
@@ -41,9 +42,9 @@ bool Shop::sell(int item, Item type, Player player)
 
 void Shop::showStore()
 {
-	cout << "Nazwa \tCena \tHP \tDMG\n";
+	cout << "Lp \tNazwa \tCena \tHP \tDMG\n";
 	for(int i = 0; i < this->store.size(); i++)
-		cout << store[i] << "\t" << store[i].getPrice() << "\t" << store[i].getHpBonus() << "\t" << store[i].getDmgBonus() << "\n";
+		cout << i << "\t" << store[i] << "\t" << store[i].getPrice() << "\t" << store[i].getHpBonus() << "\t" << store[i].getDmgBonus() << "\n";
 }
 
 Shop::Shop(vector<Item> store)

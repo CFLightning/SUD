@@ -12,7 +12,7 @@ class Player: public Character
 {
 	private:
 	 int gold;
-	 vector<Item> eq;
+	 vector<int> eq;
 	 vector<Item> inventory;
 	 
 	public:
@@ -23,6 +23,8 @@ class Player: public Character
 	 void spendGold(int);
 	 void takeItem(Item);
 	 void giveItem(int);
+	 bool equipItem(int);
+	 bool dequipItem(int);
 	 void showInventory();
 	 void update();
 	 Player(string, int, int, int, int);
