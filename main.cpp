@@ -38,5 +38,8 @@ int main()
 	antos.show();
 	antos.showInventory();
 	
+	shop.sell(2, antos);
+	antos.showInventory();
+	
 	return 0;
 }
