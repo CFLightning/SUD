@@ -17,8 +17,7 @@ int main()
 	_items[1] = luk;
 	_items[2] = nusz;
 	
-	Player antos("Antos", 10, 2, 1, 20);
-	antos.takeItem(_items[rand() % 3]);
+	Player antos("Antos", 10, 2, 1, 100);		// bo jesteś kurwa biedakiem
 	antos.takeItem(_items[rand() % 3]);
 	antos.showEq();
 	antos.show();
@@ -35,7 +34,7 @@ int main()
 	Shop shop(store);
 	shop.showStore();
 	
-	shop.buy(2, antos);
+	shop.buy(0, antos);
 	antos.show();
 	antos.showInventory();
 	

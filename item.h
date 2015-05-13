@@ -23,6 +23,8 @@ class Item
 		bool isArmor();
 		bool isWeapon();
 		bool isNotUsable();
+		int getSlot();
+		string getName();
 		int getHpBonus();
 		int getDmgBonus();
 		

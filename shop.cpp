@@ -10,7 +10,7 @@ bool Shop::isShop()
 	return true;
 }
 
-bool Shop::buy(int item, Player player)
+bool Shop::buy(int item, Player &player)
 {
 	if(player.getGold() < this->store[item].getPrice())
 	{	
@@ -30,7 +30,7 @@ bool Shop::buy(int item, Player player)
 	return false;
 }
 
-bool Shop::sell(int item, Item type, Player player)
+bool Shop::sell(int item, Item type, Player &player)
 {
 	cout << "Sold item: " << type << "\nNo returns\n";
 	

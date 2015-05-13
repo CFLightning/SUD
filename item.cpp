@@ -75,3 +75,13 @@ int Item::getDmgBonus()
 {
 	return this->dmg;
 }
+
+int Item::getSlot()
+{
+	return this->slot;
+}
+
+string Item::getName()
+{
+	return this->name;
+}
