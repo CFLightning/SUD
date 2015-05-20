@@ -103,3 +103,8 @@ void Player::showInventory()
 	for(int i = 1; i < this->inventory.size(); i++)
 		cout << i << "\t" << this->inventory[i] << "\n";
 }
+
+Item Player::getItemFromInventory(int item)
+{
+	return this->inventory[item];
+}

@@ -30,11 +30,11 @@ bool Shop::buy(int item, Player &player)
 	return false;
 }
 
-bool Shop::sell(int item, Item type, Player &player)
+bool Shop::sell(int item, Player &player)
 {
-	cout << "Sold item: " << type << "\nNo returns\n";
+	cout << "Sold item: " << player.getItemFromInventory(item) << "\nNo returns\n";
 	
-	player.addGold(type.getPrice());
+	player.addGold(player.getItemFromInventory(item).getPrice());
 	player.giveItem(item);
 	
 	return true;

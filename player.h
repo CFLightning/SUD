@@ -26,6 +26,7 @@ class Player: public Character
 	 bool equipItem(int);
 	 bool dequipItem(int);
 	 void showInventory();
+	 Item getItemFromInventory(int);
 	 void update();
 	 Player(string, int, int, int, int);
 };
