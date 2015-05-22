@@ -28,6 +28,7 @@ class Player: public Character
 	 void showInventory();
 	 Item getItemFromInventory(int);
 	 void update();
+	 void levelUp();
 	 Player(string, int, int, int, int);
 };
 

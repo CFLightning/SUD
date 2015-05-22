@@ -8,4 +8,20 @@
 #include "item.h"
 #include "shop.h"
 
+#include "vector"
+
+#define _itemsPath "data/items.dat"
+
+class Sud
+{
+	private:
+		vector<Item> items;
+	
+	public:
+		bool init();
+		
+		Item getItem(int);
+		int howMuchItems();
+};
+
 #endif

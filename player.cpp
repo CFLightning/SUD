@@ -108,3 +108,9 @@ Item Player::getItemFromInventory(int item)
 {
 	return this->inventory[item];
 }
+
+void Player::levelUp()
+{
+	this->lvl++;
+	this->update();
+}
