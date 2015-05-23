@@ -69,7 +69,7 @@ bool Sud::start()
 		cout << "\n";
 	
 	cout << "Name: ";
-	cin.getline(name, 255);
+	getline(cin, name);
 	
 	player = Player(name, 10, 5, 0, 10);
 	
