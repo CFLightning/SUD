@@ -65,6 +65,9 @@ bool Sud::start()
 	
 	string name;
 	
+	for(int i = 0; i < 50; i++)
+		cout << "\n";
+	
 	cout << "Name: ";
 	cin >> name;
 	
@@ -108,6 +111,9 @@ bool Sud::start()
 			cout << "You commit suicide. No more pain.\n";
 			return false;
 		}
+		else
+			cout << "Incorrect command\n";
 	}
+	#undef player
 	return true;
 }

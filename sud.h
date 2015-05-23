@@ -17,6 +17,7 @@ class Sud
 	private:
 		Player pl;
 		vector<Item> items;
+		vector<vector<Event> > events;
 	
 	public:
 		bool init();
