@@ -15,10 +15,12 @@
 class Sud
 {
 	private:
+		Player pl;
 		vector<Item> items;
 	
 	public:
 		bool init();
+		bool start();
 		
 		Item getItem(int);
 		int howMuchItems();

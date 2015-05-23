@@ -23,7 +23,7 @@ void Npc::show()
 		 << this->name << "\n" 
 		 << this->hp << "/" << this->baseHp+this->lvl << "\tHP\n"
 		 << this->dmg << "\tdph\n"
-		 << this->lvl << "\tpoziom\n"
+		 << this->lvl + 1 << "\tpoziom\n"
 		 << this->description << "\n";
 }
 

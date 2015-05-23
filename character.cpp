@@ -23,3 +23,8 @@ Character::Character(string name, int baseHp, int baseDmg, int lvl)
 	this->baseDmg = baseDmg;
 	this->lvl = lvl;
 }
+
+string Character::getName()
+{
+	return this->name;
+}

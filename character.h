@@ -22,6 +22,7 @@ class Character
 	public:
 		void takeDMG(Character);
 		int getDMG();
+		string getName();
 };
 
 #endif

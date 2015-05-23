@@ -1,4 +1,10 @@
 #include "sud.h"
+#include "player.h"
+#include "character.h"
+#include "event.h"
+#include "npc.h"
+#include "item.h"
+#include "shop.h"
 
 #include "fstream"
 #include "string"
@@ -29,7 +35,7 @@ bool Sud::init()
 				args[i] = atoi(buffer.c_str());
 			}
 			this->items.push_back(Item(name, args[0], args[1], args[2], args[3]));
-			cout << this->items[this->items.size	() - 1] << "\n";
+			//cout << this->items[this->items.size	() - 1] << "\n";
 		}	
 		f_items.close();
 	}
@@ -50,4 +56,58 @@ Item Sud::getItem(int item)
 int Sud::howMuchItems()
 {
 	return this->items.size();
+}
+
+bool Sud::start()
+{
+	srand(time(NULL));
+	#define player this->pl
+	
+	string name;
+	
+	cout << "Name: ";
+	cin >> name;
+	
+	player = Player(name, 10, 5, 0, 10);
+	
+	cout << "\nWelcome to the world of SUD, " << player.getName() << "\nYou have been blessed by Fortune!\n";
+	player.takeItem(this->getItem(rand() % this->howMuchItems()));
+	
+	while(true)
+	{
+		cout << "\t> ";
+		string command;
+		cin >> command;
+		
+		if(command == "show")
+		{
+			cin >> command;
+			
+			if(command == "inv")
+				player.showInventory();
+			else if(command == "eq")
+				player.showEq();
+			else if(command == "stats")
+				player.show();
+			else
+				cout << "Incorrect command\n";
+		}
+		else if(command == "equip")
+		{
+			int item;
+			cin >> item;
+			
+			if(player.equipItem(item))
+				cout << "Succesfully equipped " << player.getItemFromInventory(item) << "\n";
+			else
+				cout << "Incorrect item index\n";
+		}
+			
+		else if(command == "suicide")
+		{
+			cout << "You commit suicide. No more pain.\n";
+			return false;
+		}
+	}
+	return true;
 }

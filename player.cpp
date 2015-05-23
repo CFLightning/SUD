@@ -19,6 +19,20 @@ Player::Player(string name, int baseHp, int baseDmg, int lvl, int gold):Characte
 	this->hp = this->maxHp;
 }
 
+Player::Player():Character("No name", 1, 0, 0)
+{
+	this->inventory.push_back(Item());
+	
+	for(int i = 0; i < 3; i++)
+		this->eq.push_back(0);
+		
+	this->maxHp = this->baseHp;
+	this->dmg = this->baseDmg;
+	
+	this->gold = 0;
+	this->hp = this->maxHp;
+}
+
 void Player::update()
 {
 	this->maxHp = this->baseHp + this->inventory[eq[0]].getHpBonus() + this->inventory[eq[1]].getHpBonus() + this->inventory[eq[2]].getHpBonus() + this->lvl;
@@ -64,26 +78,28 @@ void Player::show()
 		 << this->name << "\n" 
 		 << this->hp << "/" << this->baseHp+this->lvl << "\tHP\n"
 		 << this->dmg << "\tdph\n"
-		 << this->lvl << "\tpoziom\n"
+		 << this->lvl + 1 << "\tpoziom\n"
 		 << this->gold << "\tmunies\n"
 		 << this->description << "\n";
 }
 
 bool Player::equipItem(int item)
 {
-	if(this->inventory[item].isHelmet())
+	if(item >= this->inventory.size())
+		return false;
+	else if(this->inventory[item].isHelmet())
 	{
 		this->eq[0] = item;
 		this->update();
 		return true;
 	}
-	if(this->inventory[item].isArmor())
+	else if(this->inventory[item].isArmor())
 	{
 		this->eq[1] = item;
 		this->update();
 		return true;
 	}
-	if(this->inventory[item].isWeapon())
+	else if(this->inventory[item].isWeapon())
 	{
 		this->eq[2] = item;
 		this->update();

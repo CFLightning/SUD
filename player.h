@@ -30,6 +30,7 @@ class Player: public Character
 	 void update();
 	 void levelUp();
 	 Player(string, int, int, int, int);
+	 Player();
 };
 
 #endif
