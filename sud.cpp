@@ -155,6 +155,29 @@ bool Sud::start()
 			else
 				cout << "Incorrect slot\n";
 		}
+		else if(command == "hurt")
+		{
+			cin >> command;
+			if(command == "me")
+			{
+				cin >> command;
+				int dmg = atoi(command.c_str());
+				if(dmg < 0)
+				{
+					cout << "You tried to cheat. Now you will receive punishment!\n";
+					player.takeDMG(-dmg);
+				}
+				else
+					player.takeDMG(dmg);
+			}
+			else if(command == "help")
+				cout << "Type person whom you want to hurt. Unfortunately, you can only hurt yourself\n";
+			else
+				cout << inc_comm;
+		}
+		
+		// CHEATS
+		
 		else if(command == "heal" && this->debug_mode)
 		{
 			cin >> command;

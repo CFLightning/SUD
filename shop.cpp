@@ -47,7 +47,7 @@ void Shop::showStore()
 		cout << i << "\t" << store[i] << "\t" << store[i].getPrice() << "\t" << store[i].getHpBonus() << "\t" << store[i].getDmgBonus() << "\n";
 }
 
-Shop::Shop(vector<Item> store)
+Shop::Shop(string text, Player& pl, vector<Item> store):Event(text, pl)
 {
 	this->store = store;
 }
