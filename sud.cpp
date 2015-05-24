@@ -208,7 +208,7 @@ bool Sud::start()
 			cin >> this->debug_mode;
 		}
 		else if(command == "help")
-			cout << "show equip dequip\n";
+			cout << "show equip dequip hurt\n";
 		else if(command == "suicide")
 		{
 			cout << "You commit suicide. No more pain.\n";
