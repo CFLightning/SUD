@@ -20,8 +20,10 @@ class Character
 		Character(string, int, int, int);
 
 	public:
-		void takeDMG(Character);
+		void takeDMG(int);
 		int getDMG();
+		int getMaxHp();
+		int getHp();
 		string getName();
 };
 

@@ -6,9 +6,9 @@
 
 using namespace std;
 
-void Character::takeDMG(Character enemy)
+void Character::takeDMG(int dmg)
 {
-	this->hp -= enemy.getDMG();
+	this->hp -= dmg;
 }
 
 int Character::getDMG()
@@ -27,4 +27,14 @@ Character::Character(string name, int baseHp, int baseDmg, int lvl)
 string Character::getName()
 {
 	return this->name;
+}
+
+int Character::getMaxHp()
+{
+	return this->maxHp;
+}
+
+int Character::getHp()
+{
+	return this->hp;
 }

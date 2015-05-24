@@ -16,6 +16,7 @@ class Sud
 {
 	private:
 		Player pl;
+		bool debug_mode;
 		vector<Item> items;
 		vector<vector<Event> > events;
 	
@@ -25,6 +26,7 @@ class Sud
 		
 		Item getItem(int);
 		int howMuchItems();
+		int findItemByName(string);
 };
 
 #endif

@@ -63,8 +63,13 @@ void Player::spendGold(int payment)
 
 void Player::takeItem(Item received)
 {
-	this->inventory.push_back(received);
-	cout << "Received item: " << this->inventory[this->inventory.size() - 1] << "\n";
+	if(received.getName() == "No item")
+		cout << "Did not received any item\n";
+	else
+	{
+		this->inventory.push_back(received);
+		cout << "Received item: " << this->inventory[this->inventory.size() - 1] << "\n";
+	}
 }
 
 void Player::giveItem(int item)
