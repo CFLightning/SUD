@@ -47,7 +47,22 @@ bool Sud::init()
 		return false;
 	}
 	
+		// Loading events
+	//...
+	
+		// Creating map
+	for(int x = 0; i < _map_size_x; i++)
+	{
+		this->map.push_back(vector<Event>);
+		
+		for(int y = 0; y < _map_size_y; y++)
+		{
+			;
+		}
+	}
+	
 	this->debug_mode = false;
+	this->traveled = true;
 	
 	return true;
 }
@@ -77,7 +92,10 @@ bool Sud::start()
 	srand(time(NULL));
 	#define player this->pl
 	#define _items this->items
+	#define start_x 1
+	#define start_y 1
 	#define inc_comm "Incorrect command, type help if need help\n"
+	#define pointless "There is nothing out there; going in this direction is pointless\n"
 	
 	string name;
 	
@@ -92,11 +110,23 @@ bool Sud::start()
 	cout << "\nWelcome to the world of SUD, " << player.getName() << "\nYou have been blessed by Fortune!\n";
 	player.takeItem(this->getItem(rand() % this->howMuchItems()));
 	
+	this->currentEvent = map[start_x][start_y];						// Sets starting location
+	this->currentPosX = start_x;
+	this->currentPosY = start_y;
+	
 	while(true)
 	{
+		if(this->traveled)
+		{
+			cout << this->currentEvent;
+			this->traveled = false;
+		}
+		
 		cout << "\t> ";
 		string command;
 		cin >> command;
+		
+		// Player
 		
 		if(command == "show")
 		{
@@ -166,7 +196,7 @@ bool Sud::start()
 				if(dmg < 0)
 				{
 					cout << "You tried to cheat. Now you will receive punishment!\n";
-					player.takeDMG(-dmg);
+					player.takeDMG(-(2 * dmg));
 				}
 				else
 					player.takeDMG(dmg);
@@ -175,6 +205,60 @@ bool Sud::start()
 				cout << "Type person whom you want to hurt. Unfortunately, you can only hurt yourself\n";
 			else
 				cout << inc_comm;
+		}
+		
+		// Movement
+		
+		else if(command == "go")
+		{
+			if(this->currentEvent.canTravel())
+				cin >> command;
+				if(command == "w" || command == "west")
+				{
+					if(this->currentPosX > 0)
+					{
+						this->currentEvent = map(--this->currentPosX, this->currentPosY);
+						this->traveled = true;
+					}
+					else
+						cout << pointless;
+				}
+				else if(command == "n" || command == "north")
+				{
+					if(this->currentPosY < _map_size_y - 1)
+					{
+						this->currentEvent = map(this->currentPosX, ++this->currentPosY);
+						this->traveled = true;
+					}
+					else
+						cout << pointless;
+				}
+				else if(command == "e" || command == "east")
+				{
+					if(this->currentPosX < _map_size_x - 1)
+					{
+						this->currentEvent = map(++this->currentPosX, this->currentPosY);
+						this->traveled = true;
+					}
+					else
+						cout << pointless;
+				}
+				else if(command == "s" || command == "south")
+				{
+					if(this->currentPosY > 0)
+					{
+						this->currentEvent = map(this->currentPosX, --this->currentPosY);
+						this->traveled = true;
+					}
+					else
+						cout << pointless;
+				}
+				else if(command == "help")
+					cout << "Type direction: east, south, west or north\n"
+				else
+					cout << inc_comm;
+			else
+				cout << "Cannot travel right now\n";
 		}
 		
 		// CHEATS
@@ -209,7 +293,7 @@ bool Sud::start()
 			cin >> this->debug_mode;
 		}
 		else if(command == "help")
-			cout << "show equip dequip hurt\n";
+			cout << "show equip dequip hurt go\n";
 		else if(command == "suicide")
 		{
 			cout << "You commit suicide. No more pain.\n";
