@@ -51,9 +51,9 @@ bool Sud::init()
 	//...
 	
 		// Creating map
-	for(int x = 0; i < _map_size_x; i++)
+	for(int x = 0; x < _map_size_x; x++)
 	{
-		this->map.push_back(vector<Event>);
+		this->map.push_back(vector<Event>());
 		
 		for(int y = 0; y < _map_size_y; y++)
 		{

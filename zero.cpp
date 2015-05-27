@@ -6,7 +6,7 @@ bool Zero::isZero()
 	return true; 
 }
 
-Zero::Zero()
+Zero::Zero(Player& player):Event("Nic tu nie ma\n", player)
 {
-	text="Nic tu nie ma\n";
+	;
 }

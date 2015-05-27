@@ -13,10 +13,13 @@ class Event
 	private:
 		Player pl;
 		string text;
+		bool canTravel;
 	
 	public:
 		friend ostream& operator<<(ostream&, const Event&);
 		Event(string, Player&);
+		Event();
+		bool canTravel();
 		//int result() = 0;
 };
 
