@@ -15,6 +15,7 @@ using namespace std;
 
 bool Sud::init()
 {
+		// Loading items
 	fstream f_items;
 	f_items.open(_itemsPath, ios::in);
 	

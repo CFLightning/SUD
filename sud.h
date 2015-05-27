@@ -18,7 +18,8 @@ class Sud
 		Player pl;
 		bool debug_mode;
 		vector<Item> items;
-		vector<vector<Event> > events;
+		vector<Event> events;
+		vector<vector<Event> > map;
 	
 	public:
 		bool init();
