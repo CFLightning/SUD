@@ -1,12 +1,12 @@
 #include "zero.h"
 #include "string"
 
-bool Zero::isZero();
+bool Zero::isZero()
 {
 	return true; 
 }
 
-Zero::Zero();
+Zero::Zero()
 {
-	text="Nic tu nie ma";
+	text="Nic tu nie ma\n";
 }
