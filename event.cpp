@@ -14,7 +14,7 @@ Event::Event(string text, Player& pl)
 {
 	this->pl = pl;
 	this->text = text;
-	this->canTravel = true;
+	this->travel = true;
 }
 
 Event::Event()
@@ -24,5 +24,5 @@ Event::Event()
 
 bool Event::canTravel()
 {
-	return canTravel;
+	return travel;
 }

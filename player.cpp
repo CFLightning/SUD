@@ -135,3 +135,10 @@ void Player::levelUp()
 	this->lvl++;
 	this->update();
 }
+
+void Player::interactionBonus(int bonusHP, int bonusDMG)
+{
+	this->baseHp += bonusHP;
+	this->baseDmg += bonusDMG;
+	this->update();
+}

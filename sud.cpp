@@ -212,12 +212,13 @@ bool Sud::start()
 		else if(command == "go")
 		{
 			if(this->currentEvent.canTravel())
+			{
 				cin >> command;
 				if(command == "w" || command == "west")
 				{
 					if(this->currentPosX > 0)
 					{
-						this->currentEvent = map(--this->currentPosX, this->currentPosY);
+						this->currentEvent = map[--this->currentPosX][this->currentPosY];
 						this->traveled = true;
 					}
 					else
@@ -227,7 +228,7 @@ bool Sud::start()
 				{
 					if(this->currentPosY < _map_size_y - 1)
 					{
-						this->currentEvent = map(this->currentPosX, ++this->currentPosY);
+						this->currentEvent = map[this->currentPosX][++this->currentPosY];
 						this->traveled = true;
 					}
 					else
@@ -237,7 +238,7 @@ bool Sud::start()
 				{
 					if(this->currentPosX < _map_size_x - 1)
 					{
-						this->currentEvent = map(++this->currentPosX, this->currentPosY);
+						this->currentEvent = map[++this->currentPosX][this->currentPosY];
 						this->traveled = true;
 					}
 					else
@@ -247,16 +248,17 @@ bool Sud::start()
 				{
 					if(this->currentPosY > 0)
 					{
-						this->currentEvent = map(this->currentPosX, --this->currentPosY);
+						this->currentEvent = map[this->currentPosX][--this->currentPosY];
 						this->traveled = true;
 					}
 					else
 						cout << pointless;
 				}
 				else if(command == "help")
-					cout << "Type direction: east, south, west or north\n"
+					cout << "Type direction: east, south, west or north\n";
 				else
 					cout << inc_comm;
+			}
 			else
 				cout << "Cannot travel right now\n";
 		}

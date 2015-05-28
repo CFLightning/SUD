@@ -7,7 +7,7 @@ class Zero: public Event
 {
 	public:
 		bool isZero();
-		Zero();
+		Zero(Player&);
 };
 
 #endif

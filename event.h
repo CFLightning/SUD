@@ -10,10 +10,10 @@ using namespace std;
 
 class Event
 {
-	private:
+	protected:
 		Player pl;
 		string text;
-		bool canTravel;
+		bool travel;
 	
 	public:
 		friend ostream& operator<<(ostream&, const Event&);
