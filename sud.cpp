@@ -7,6 +7,7 @@
 #include "shop.h"
 
 #include "fstream"
+#include "sstream"
 #include "string"
 #include "iostream"
 #include "cstdlib"
@@ -57,7 +58,10 @@ bool Sud::init()
 		
 		for(int y = 0; y < _map_size_y; y++)
 		{
-			;
+			stringstream ss;
+			ss << "Nic " << x << ", " << y << "\n";
+			
+			this->map[x].push_back(Event(ss.str(), this->pl));
 		}
 	}
 	
@@ -96,6 +100,7 @@ bool Sud::start()
 	#define start_y 1
 	#define inc_comm "Incorrect command, type help if need help\n"
 	#define pointless "There is nothing out there; going in this direction is pointless\n"
+	#define gameOver cout << "You died. Game over\n"; return 0
 	
 	string name;
 	
@@ -200,6 +205,9 @@ bool Sud::start()
 				}
 				else
 					player.takeDMG(dmg);
+				
+				if(player.getHp() <= 0)
+					gameOver;
 			}
 			else if(command == "help")
 				cout << "Type person whom you want to hurt. Unfortunately, you can only hurt yourself\n";
