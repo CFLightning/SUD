@@ -207,7 +207,9 @@ bool Sud::start()
 					player.takeDMG(dmg);
 				
 				if(player.getHp() <= 0)
+				{
 					gameOver;
+				}
 			}
 			else if(command == "help")
 				cout << "Type person whom you want to hurt. Unfortunately, you can only hurt yourself\n";
