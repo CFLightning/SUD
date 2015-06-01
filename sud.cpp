@@ -48,6 +48,36 @@ bool Sud::init()
 		return false;
 	}
 	
+		// Loading npc's
+	fstream f_npcs;
+	f_npcs.open(_npcsPath, ios::in);
+	
+	if(f_npcs.good())
+	{
+		string name;
+		string buffer;
+		int argn[3];
+		
+		while(!f_npcs.eof())
+		{
+			getline(f_npcs, name);
+			if(name[0] == '{' || name[0] == '}' || name == "" || name[0] == ' ')
+				continue;
+			for(int i = 0; i < 3; i++)
+			{
+				getline(f_npcs, buffer);
+				argn[i] = atoi(buffer.c_str());
+			}
+			this->enemies.push_back(Npc(name, argn[0], argn[1], argn[2], this->getItem(rand() % this->howMuchItems())));
+		}	
+		f_npcs.close();
+	}
+	else
+	{
+		cout << "Couldn't open _npcsPath file.\n";
+		return false;
+	}
+	
 		// Loading events
 	//...
 	

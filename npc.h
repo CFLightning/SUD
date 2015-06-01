@@ -13,6 +13,7 @@ class Npc: public Character
 	public:
 	 void dropItem(Player);
 	 Npc(string, int, int, int, Item);
+	 Npc();
 	 void show();
 };
 

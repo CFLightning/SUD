@@ -1,5 +1,5 @@
 {
-miecz
+Sword
 1000
 5
 0
@@ -7,7 +7,7 @@ miecz
 }
 
 {
-luk
+Bow
 1250
 7
 0
@@ -15,7 +15,7 @@ luk
 }
 
 {
-noz
+Dagger
 750
 4
 1

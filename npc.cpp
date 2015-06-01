@@ -4,12 +4,19 @@
 
 using namespace std;
 
-Npc::Npc(string name, int hp, int dmg, int lvl, Item drop):Character(name, hp, dmg, lvl)
+Npc::Npc(string name, int baseHp, int baseDmg, int lvl, Item drop):Character(name, baseHp, baseDmg, lvl)
 {
 	this->hp = this->baseHp + lvl;
 	this->maxHp = this->baseHp + lvl;
 	this->dmg = this->baseDmg + lvl;
 	this->drop = drop;
+}
+
+Npc::Npc():Character("No name", 1, 0, 0)
+{
+	this->maxHp = this->baseHp;
+	this->dmg = this->baseDmg;
+	this->hp = this->maxHp;
 }
 
 void Npc::dropItem(Player player)
