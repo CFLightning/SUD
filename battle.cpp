@@ -8,7 +8,7 @@ bool Battle::isBattle()
 	return true;
 }
 
-Battle::Battle(string text, Player& player, Npc& enemy):Event(text, player)
+Battle::Battle(Player& player, Npc& enemy):Event("You see a " + enemy.getName() + " standing in your way, what do you do?\n", player)
 {
 	this->text="You see a " + enemy.getName() + " standing in your way, what do you do?\n";
 	this->enemy=enemy;

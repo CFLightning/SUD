@@ -11,8 +11,8 @@
 #include "vector"
 
 #define _itemsPath "data/items.dat"
-#define _eventsPath "data/events.dat"
 #define _npcsPath "data/npcs.dat"
+#define _interactionsPath "data/interactions.dat"
 
 #define _map_size_x 4
 #define _map_size_y 4

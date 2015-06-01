@@ -5,6 +5,9 @@
 #include "npc.h"
 #include "item.h"
 #include "shop.h"
+#include "battle.h"
+#include "interaction.h"
+#include "zero.h"
 
 #include "fstream"
 #include "sstream"
@@ -16,6 +19,7 @@ using namespace std;
 
 bool Sud::init()
 {
+	#define player this->pl
 		// Loading items
 	fstream f_items;
 	f_items.open(_itemsPath, ios::in);
@@ -79,7 +83,52 @@ bool Sud::init()
 	}
 	
 		// Loading events
-	//...
+		// Loading interactions
+	fstream f_interactions;
+	f_interactions.open(_interactionsPath, ios::in);
+	
+	if(f_interactions.good())
+	{
+		string text;
+		string buffer;
+		int args[5];
+		
+		while(!f_interactions.eof())
+		{
+			getline(f_interactions, text);
+			if(text[0] == '{' || text[0] == '}' || text == "" || text[0] == ' ')
+				continue;
+			for(int i = 0; i < 5; i++)
+			{
+				getline(f_interactions, buffer);
+				args[i] = atoi(buffer.c_str());
+			}
+			this->events.push_back(Interaction(text, player, args[0], args[1], args[2], args[3], args[4]));
+		}	
+		f_interactions.close();
+	}
+	else
+	{
+		cout << "Couldn't open _interactionsPath file.\n";
+		return false;
+	}
+	
+		// Loading battles
+	for(int i = 0; i < 5; i++)
+	{
+		this->events.push_back(Battle(player, enemies[i]));
+	}
+		// Loading zero
+	this->events.push_back(Zero(player));
+		// Loading shop
+	{
+		vector<Item> store;
+		for(int i=0; i<5; i++)
+		{
+			store.push_back(items[rand() % 9]);
+		}
+		events.push_back(Shop("Welcome to the shop", player, store));
+	}
 	
 		// Creating map
 	for(int x = 0; x < _map_size_x; x++)
@@ -88,10 +137,10 @@ bool Sud::init()
 		
 		for(int y = 0; y < _map_size_y; y++)
 		{
-			stringstream ss;
-			ss << "Nic " << x << ", " << y << "\n";
+			//stringstream ss;
+			//ss << "Nic " << x << ", " << y << "\n";
 			
-			this->map[x].push_back(Event(ss.str(), this->pl));
+			this->map[x].push_back(events[rand() % 12]);
 		}
 	}
 	
@@ -251,8 +300,8 @@ bool Sud::start()
 		
 		else if(command == "go")
 		{
-			if(this->currentEvent.canTravel())
-			{
+		//	if(this->currentEvent.canTravel()) przyszłościowe ;3
+		//	{
 				cin >> command;
 				if(command == "w" || command == "west")
 				{
@@ -298,9 +347,9 @@ bool Sud::start()
 					cout << "Type direction: east, south, west or north\n";
 				else
 					cout << inc_comm;
-			}
-			else
-				cout << "Cannot travel right now\n";
+			//}
+			//else
+			//	cout << "Cannot travel right now\n";
 		}
 		
 		// CHEATS

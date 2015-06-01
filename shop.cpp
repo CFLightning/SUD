@@ -49,5 +49,6 @@ void Shop::showStore()
 
 Shop::Shop(string text, Player& pl, vector<Item> store):Event(text, pl)
 {
+	this->text = text;
 	this->store = store;
 }

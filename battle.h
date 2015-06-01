@@ -9,7 +9,7 @@ class Battle: public Event
 	private:
 		Npc enemy;
 	public:
-		Battle(string, Player&, Npc&);
+		Battle(Player&, Npc&);
 		bool isBattle();
 		int fight(Player&);
 };
