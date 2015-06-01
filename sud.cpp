@@ -19,6 +19,7 @@ using namespace std;
 
 bool Sud::init()
 {
+	srand(time(NULL));
 	#define player this->pl
 		// Loading items
 	fstream f_items;
@@ -110,7 +111,7 @@ bool Sud::init()
 	else
 	{
 		cout << "Couldn't open _interactionsPath file.\n";
-		return false;
+		return false; 
 	}
 	
 		// Loading battles
@@ -127,20 +128,17 @@ bool Sud::init()
 		{
 			store.push_back(items[rand() % 9]);
 		}
-		events.push_back(Shop("Welcome to the shop", player, store));
+		this->events.push_back(Shop("Welcome to the shop", player, store));
 	}
 	
 		// Creating map
 	for(int x = 0; x < _map_size_x; x++)
 	{
-		this->map.push_back(vector<Event>());
+		this->map.push_back(vector<int>());
 		
 		for(int y = 0; y < _map_size_y; y++)
 		{
-			//stringstream ss;
-			//ss << "Nic " << x << ", " << y << "\n";
-			
-			this->map[x].push_back(events[rand() % 12]);
+			this->map[x].push_back(rand() % 12);
 		}
 	}
 	
@@ -194,7 +192,7 @@ bool Sud::start()
 	cout << "\nWelcome to the world of SUD, " << player.getName() << "\nYou have been blessed by Fortune!\n";
 	player.takeItem(this->getItem(rand() % this->howMuchItems()));
 	
-	this->currentEvent = map[start_x][start_y];						// Sets starting location
+	this->currentEvent = events[map[start_x][start_y]];						// Sets starting location
 	this->currentPosX = start_x;
 	this->currentPosY = start_y;
 	
@@ -202,7 +200,7 @@ bool Sud::start()
 	{
 		if(this->traveled)
 		{
-			cout << this->currentEvent;
+			cout << this->currentEvent << "\n[X=" << this->currentPosX << "," << "Y=" << this->currentPosY << "]\n";
 			this->traveled = false;
 		}
 		
@@ -210,8 +208,14 @@ bool Sud::start()
 		string command;
 		cin >> command;
 		
-		// Player
 		
+		
+		// Battle
+		{
+			if(events[map[start_x][start_y]].isBattle()){cout << "batellelelele";}
+		}
+		
+		// Player
 		if(command == "show")
 		{
 			cin >> command;
@@ -300,14 +304,12 @@ bool Sud::start()
 		
 		else if(command == "go")
 		{
-		//	if(this->currentEvent.canTravel()) przyszłościowe ;3
-		//	{
 				cin >> command;
 				if(command == "w" || command == "west")
 				{
 					if(this->currentPosX > 0)
 					{
-						this->currentEvent = map[--this->currentPosX][this->currentPosY];
+						this->currentEvent = events[map[--this->currentPosX][this->currentPosY]];
 						this->traveled = true;
 					}
 					else
@@ -317,7 +319,7 @@ bool Sud::start()
 				{
 					if(this->currentPosY < _map_size_y - 1)
 					{
-						this->currentEvent = map[this->currentPosX][++this->currentPosY];
+						this->currentEvent = events[map[this->currentPosX][++this->currentPosY]];
 						this->traveled = true;
 					}
 					else
@@ -327,7 +329,7 @@ bool Sud::start()
 				{
 					if(this->currentPosX < _map_size_x - 1)
 					{
-						this->currentEvent = map[++this->currentPosX][this->currentPosY];
+						this->currentEvent = events[map[++this->currentPosX][this->currentPosY]];
 						this->traveled = true;
 					}
 					else
@@ -337,7 +339,7 @@ bool Sud::start()
 				{
 					if(this->currentPosY > 0)
 					{
-						this->currentEvent = map[this->currentPosX][--this->currentPosY];
+						this->currentEvent = events[map[this->currentPosX][--this->currentPosY]];
 						this->traveled = true;
 					}
 					else
@@ -347,9 +349,6 @@ bool Sud::start()
 					cout << "Type direction: east, south, west or north\n";
 				else
 					cout << inc_comm;
-			//}
-			//else
-			//	cout << "Cannot travel right now\n";
 		}
 		
 		// CHEATS

@@ -5,9 +5,24 @@
 
 using namespace std;
 
-bool Shop::isShop()
+bool Shop::isShop() const
 {
 	return true;
+}
+
+bool Shop::isBattle() const
+{
+	return false;
+}
+
+bool Shop::isZero() const
+{
+	return false;
+}
+
+bool Shop::isInteraction() const
+{
+	return false;
 }
 
 bool Shop::buy(int item, Player &player)

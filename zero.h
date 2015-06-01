@@ -6,7 +6,10 @@
 class Zero: public Event
 {
 	public:
-		bool isZero();
+		bool isInteraction() const;
+		bool isBattle() const;
+		bool isZero() const;
+		bool isShop() const;
 		Zero(Player&);
 };
 

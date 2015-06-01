@@ -31,7 +31,7 @@ class Sud
 		vector<Item> items;
 		vector<Event> events;
 		vector<Npc> enemies;
-		vector<vector<Event> > map;
+		vector<vector<int> > map;
 	
 	public:
 		bool init();

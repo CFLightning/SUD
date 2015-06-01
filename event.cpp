@@ -10,11 +10,11 @@ ostream& operator<<(ostream& ostr, const Event& event)
 	return ostr;
 }
 
-Event::Event(string text, Player& pl)
+Event::Event(string text, Player& pl, bool whichEvent)
 {
 	this->pl = pl;
 	this->text = text;
-	this->travel = true;
+	this->whichEvent=whichEvent;
 }
 
 Event::Event()
@@ -22,7 +22,3 @@ Event::Event()
 	;
 }
 
-bool Event::canTravel()
-{
-	return travel;
-}

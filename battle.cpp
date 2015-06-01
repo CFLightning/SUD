@@ -3,25 +3,39 @@
 #include "npc.h"
 #include "unistd.h"
 
-bool Battle::isBattle()
+bool Battle::isBattle() const
 {
 	return true;
 }
 
+bool Battle::isShop() const
+{
+	return false;
+}
+ 
+bool Battle::isZero() const
+{
+	return false;
+}
+
+bool Battle::isInteraction() const
+{
+	return false;
+}
+
 Battle::Battle(Player& player, Npc& enemy):Event("You see a " + enemy.getName() + " standing in your way, what do you do?\n", player)
 {
-	this->text="You see a " + enemy.getName() + " standing in your way, what do you do?\n";
+	this->text="You see a " + enemy.getName() + " standing in your way, what do you do?";
 	this->enemy=enemy;
 }
 
-int Battle::fight(Player& player)
+/*int Battle::fight(Player& player)
 {
 	#define gameOver cout << "You died. Game over\n"; return 0
 	while(true)
 	{
 		string command;
-		cout << "Your enemy is a " << enemy.getName() 
-			 << ". He has " << enemy.getHp() << "/" << enemy.getMaxHp() 
+		cout << "Your enemy has " << enemy.getHp() << "/" << enemy.getMaxHp() 
 			 << "Fight or run?\n";
 		cin >> command;
 		if(command == "fight")
@@ -40,7 +54,7 @@ int Battle::fight(Player& player)
 					 << " damage from your enemy, you now have" 
 					 << player.getHp() << "/" << player.getMaxHp() << "\n";
 				
-			}				
+			}			
 		}
 		else if(command == "run")
 		{
@@ -60,6 +74,7 @@ int Battle::fight(Player& player)
 		else if(enemy.getHp() <= 0)
 		{
 			return 1;
+			player.takeItem(enemy.dropItem(player));
 		}
 	}
-}
+}*/
