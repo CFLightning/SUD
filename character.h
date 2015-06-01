@@ -24,6 +24,7 @@ class Character
 		int getDMG();
 		int getMaxHp();
 		int getHp();
+		int getLvl();
 		string getName();
 };
 

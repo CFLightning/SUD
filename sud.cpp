@@ -48,7 +48,7 @@ bool Sud::init()
 		return false;
 	}
 	
-		// Loading npc's
+		// Loading NPCs
 	fstream f_npcs;
 	f_npcs.open(_npcsPath, ios::in);
 	
@@ -56,7 +56,7 @@ bool Sud::init()
 	{
 		string name;
 		string buffer;
-		int argn[3];
+		int args[3];
 		
 		while(!f_npcs.eof())
 		{
@@ -66,9 +66,9 @@ bool Sud::init()
 			for(int i = 0; i < 3; i++)
 			{
 				getline(f_npcs, buffer);
-				argn[i] = atoi(buffer.c_str());
+				args[i] = atoi(buffer.c_str());
 			}
-			this->enemies.push_back(Npc(name, argn[0], argn[1], argn[2], this->getItem(rand() % this->howMuchItems())));
+			this->enemies.push_back(Npc(name, args[0], args[1], args[2], this->getItem(rand() % this->howMuchItems())));
 		}	
 		f_npcs.close();
 	}

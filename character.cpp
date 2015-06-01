@@ -38,3 +38,8 @@ int Character::getHp()
 {
 	return this->hp;
 }
+
+int Character::getLvl()
+{
+	return lvl;
+}

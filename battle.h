@@ -11,5 +11,5 @@ class Battle: public Event
 	public:
 		Battle(string, Player&, Npc&);
 		bool isBattle();
-		void fight();
+		int fight(Player&);
 };

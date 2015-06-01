@@ -29,6 +29,7 @@ class Player: public Character
 	 Item getItemFromInventory(int);
 	 void update();
 	 void levelUp();
+	 void levelDown();
 	 void interactionBonus(int, int);
 	 Player(string, int, int, int, int);
 	 Player();
