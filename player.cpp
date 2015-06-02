@@ -81,11 +81,10 @@ void Player::show()
 {
 	cout << "\nStatystyki\n"
 		 << this->name << "\n" 
-		 << this->hp << "/" << this->baseHp+this->lvl << "\tHP\n"
+		 << this->hp << "/" << this->maxHp << "\tHP\n"
 		 << this->dmg << "\tdph\n"
 		 << this->lvl + 1 << "\tpoziom\n"
-		 << this->gold << "\tmunies\n"
-		 << this->description << "\n";
+		 << this->gold << "\tmunies\n";
 }
 
 bool Player::equipItem(int item)
@@ -96,18 +95,21 @@ bool Player::equipItem(int item)
 	{
 		this->eq[0] = item;
 		this->update();
+		this->hp=this->maxHp;
 		return true;
 	}
 	else if(this->inventory[item].isArmor())
 	{
 		this->eq[1] = item;
 		this->update();
+		this->hp=this->maxHp;
 		return true;
 	}
 	else if(this->inventory[item].isWeapon())
 	{
 		this->eq[2] = item;
 		this->update();
+		this->hp=this->maxHp;
 		return true;
 	}
 	else

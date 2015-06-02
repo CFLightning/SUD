@@ -7,6 +7,7 @@
 #include "npc.h"
 #include "item.h"
 #include "shop.h"
+#include "interaction.h"
 
 #include "vector"
 
@@ -14,8 +15,8 @@
 #define _npcsPath "data/npcs.dat"
 #define _interactionsPath "data/interactions.dat"
 
-#define _map_size_x 4
-#define _map_size_y 4
+#define _map_size_x 15
+#define _map_size_y 15
 
 class Sud
 {
@@ -29,7 +30,7 @@ class Sud
 		int currentPosY;
 		
 		vector<Item> items;
-		vector<Event> events;
+		vector<Interaction> events;
 		vector<Npc> enemies;
 		vector<vector<int> > map;
 	

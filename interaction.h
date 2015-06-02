@@ -15,12 +15,8 @@ class Interaction: public Event
 		int lvlUp;
 		int gold;
 	public:
-		bool isInteraction() const;
-		bool isBattle() const;
-		bool isZero() const;
-		bool isShop() const;
 		Interaction(string, Player&, int, int, int, int, int);
-		//virtual int happen(Player&);
+		void interact(Player&);
 };
 
 #endif

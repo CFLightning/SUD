@@ -5,26 +5,6 @@
 
 using namespace std;
 
-bool Shop::isShop() const
-{
-	return true;
-}
-
-bool Shop::isBattle() const
-{
-	return false;
-}
-
-bool Shop::isZero() const
-{
-	return false;
-}
-
-bool Shop::isInteraction() const
-{
-	return false;
-}
-
 bool Shop::buy(int item, Player &player)
 {
 	if(player.getGold() < this->store[item].getPrice())
@@ -57,7 +37,7 @@ bool Shop::sell(int item, Player &player)
 
 void Shop::showStore()
 {
-	cout << "Lp \tNazwa \tCena \tHP \tDMG\n";
+	cout << "Lp \tNazwa \t\tCena \tHP \tDMG\n";
 	for(int i = 0; i < this->store.size(); i++)
 		cout << i << "\t" << store[i] << "\t" << store[i].getPrice() << "\t" << store[i].getHpBonus() << "\t" << store[i].getDmgBonus() << "\n";
 }

@@ -114,23 +114,6 @@ bool Sud::init()
 		return false; 
 	}
 	
-		// Loading battles
-	for(int i = 0; i < 5; i++)
-	{
-		this->events.push_back(Battle(player, enemies[i]));
-	}
-		// Loading zero
-	this->events.push_back(Zero(player));
-		// Loading shop
-	{
-		vector<Item> store;
-		for(int i=0; i<5; i++)
-		{
-			store.push_back(items[rand() % 9]);
-		}
-		this->events.push_back(Shop("Welcome to the shop", player, store));
-	}
-	
 		// Creating map
 	for(int x = 0; x < _map_size_x; x++)
 	{
@@ -138,7 +121,7 @@ bool Sud::init()
 		
 		for(int y = 0; y < _map_size_y; y++)
 		{
-			this->map[x].push_back(rand() % 12);
+			this->map[x].push_back(rand() % 4);
 		}
 	}
 	
@@ -187,12 +170,11 @@ bool Sud::start()
 	cout << "Name: ";
 	getline(cin, name);
 	
-	player = Player(name, 10, 5, 0, 10);
+	player = Player(name, 20, 10, 5, 1000);
 	
 	cout << "\nWelcome to the world of SUD, " << player.getName() << "\nYou have been blessed by Fortune!\n";
 	player.takeItem(this->getItem(rand() % this->howMuchItems()));
-	
-	this->currentEvent = events[map[start_x][start_y]];						// Sets starting location
+
 	this->currentPosX = start_x;
 	this->currentPosY = start_y;
 	
@@ -200,20 +182,80 @@ bool Sud::start()
 	{
 		if(this->traveled)
 		{
-			cout << this->currentEvent << "\n[X=" << this->currentPosX << "," << "Y=" << this->currentPosY << "]\n";
+			cout << "[X=" << this->currentPosX << "," << "Y=" << this->currentPosY << "]\n";
 			this->traveled = false;
 		}
+		
+		if(map[currentPosX][currentPosY]==0)
+		{
+			int result;
+			Battle battle(player, enemies[rand() % 5]);
+			cout << battle << "\n";
+			result=battle.fight(player);
+			if(result)
+			{
+				cout << "You slain your enemy! Take his belongings and march forward!\n";
+			}
+			else
+			{
+				gameOver;
+			}
+			map[currentPosX][currentPosY]=3;
+		}
+		else if(map[currentPosX][currentPosY]==1)
+		{
+			vector<Item> store;
+			for(int i=0; i<5; i++)
+			{
+				store.push_back(items[rand() % 9]);
+			}
+			Shop shop("Welcome to the shop", player, store);
+			cout << shop << "\n";
+			shop.showStore();
+			
+			cout << "\t> ";
+			string command;
+			cin >> command;
+			if(command == "buy")
+			{
+				int item;
+				cin >> item;
+				shop.buy(item, player);
+			}
+			else if(command == "sell")
+			{
+				int item;
+				cin >> item;
+				shop.sell(item, player);
+			}
+			else if(command == "help") 	
+			{
+				cout << "buy sell";
+			}
+			else if(command == "leave")
+			{
+				cout << "You go in your merry way, the trader leaves\n";
+			}
+			else
+				cout << inc_comm;
+			map[currentPosX][currentPosY]=3;
+		}
+		else if(map[currentPosX][currentPosY]==2)
+		{
+			Interaction interaction=events[rand() % 5];
+			interaction.interact(player);
+			map[currentPosX][currentPosY]=3;
+		}
+		else if(map[currentPosX][currentPosY]==3)
+		{
+			Zero zero(player);
+			cout << zero;	
+		}
+		
 		
 		cout << "\t> ";
 		string command;
 		cin >> command;
-		
-		
-		
-		// Battle
-		{
-			if(events[map[start_x][start_y]].isBattle()){cout << "batellelelele";}
-		}
 		
 		// Player
 		if(command == "show")
@@ -309,7 +351,7 @@ bool Sud::start()
 				{
 					if(this->currentPosX > 0)
 					{
-						this->currentEvent = events[map[--this->currentPosX][this->currentPosY]];
+						this->currentPosX--;
 						this->traveled = true;
 					}
 					else
@@ -319,7 +361,7 @@ bool Sud::start()
 				{
 					if(this->currentPosY < _map_size_y - 1)
 					{
-						this->currentEvent = events[map[this->currentPosX][++this->currentPosY]];
+						this->currentPosY++;
 						this->traveled = true;
 					}
 					else
@@ -329,7 +371,7 @@ bool Sud::start()
 				{
 					if(this->currentPosX < _map_size_x - 1)
 					{
-						this->currentEvent = events[map[++this->currentPosX][this->currentPosY]];
+						this->currentPosX++;
 						this->traveled = true;
 					}
 					else
@@ -339,7 +381,7 @@ bool Sud::start()
 				{
 					if(this->currentPosY > 0)
 					{
-						this->currentEvent = events[map[this->currentPosX][--this->currentPosY]];
+						this->currentPosY--;
 						this->traveled = true;
 					}
 					else

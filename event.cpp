@@ -10,15 +10,15 @@ ostream& operator<<(ostream& ostr, const Event& event)
 	return ostr;
 }
 
-Event::Event(string text, Player& pl, bool whichEvent)
+Event::Event(string text, Player& pl)
 {
 	this->pl = pl;
 	this->text = text;
-	this->whichEvent=whichEvent;
 }
 
 Event::Event()
 {
 	;
 }
+
 

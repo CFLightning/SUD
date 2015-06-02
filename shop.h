@@ -16,13 +16,6 @@ class Shop: public Event
 		bool sell(int, Player&);
 		bool buy(int, Player&);
 		void showStore();
-		bool isInteraction() const;
-		bool isBattle() const;
-		bool isZero() const;
-		bool isShop() const;
-		//virtual int happen(Player&);
-		
-		int result();
 };
 
 #endif
