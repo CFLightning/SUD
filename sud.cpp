@@ -73,7 +73,9 @@ bool Sud::init()
 				getline(f_npcs, buffer);
 				args[i] = atoi(buffer.c_str());
 			}
-			this->enemies.push_back(Npc(name, args[0], args[1], args[2], this->getItem(rand() % this->howMuchItems())));
+			this->enemies.push_back(Npc(name, args[0], args[1], args[2], items[rand() % this->howMuchItems()]));
+			this->enemies.push_back(Npc(name, args[0], args[1], rand() % 5, items[rand() % this->howMuchItems()]));
+			this->enemies.push_back(Npc(name, args[0], args[1], rand() % 5, items[rand() % this->howMuchItems()]));
 		}	
 		f_npcs.close();
 	}
@@ -115,13 +117,13 @@ bool Sud::init()
 	}
 	
 		// Creating map
-	for(int x = 0; x < _map_size_x; x++)
+	for(int x = 0; x < 20; x++)
 	{
 		this->map.push_back(vector<int>());
 		
-		for(int y = 0; y < _map_size_y; y++)
+		for(int y = 0; y < 20; y++)
 		{
-			this->map[x].push_back(rand() % 4);
+			this->map[x].push_back(rand() % 5);
 		}
 	}
 	
@@ -170,39 +172,78 @@ bool Sud::start()
 	cout << "Name: ";
 	getline(cin, name);
 	
-	player = Player(name, 20, 10, 5, 1000);
+	cout << "Choose your status: \n" << "1.Gladiator (status bonus: +4 DMG)\n" << "2.Wealthy townsman (status bonus: +300 Gold)\n" << "3.Kingsguard(status bonus: +7 HP)\n" ;
+	
+	cout << "\t> ";
+	string command;
+	while(true)
+	{
+		cin >> command;
+		if(command == "gladiator" || command == "1")
+		{
+			player = Player(name, 10, 8, 0, 100); 
+			break;
+		}
+		else if(command == "townsman" || command == "2")
+		{
+			player = Player(name, 10, 4, 0, 400); 
+			break;
+		}
+		else if(command == "kingsguard" || command == "3")
+		{
+			player = Player(name, 17, 4, 0, 100); 
+			break;
+		}
+		else 
+			cout << "Not a status -> available commands: gladiator, townsman, kingsguard\n\t> ";
+	}
+	
+	
 	
 	cout << "\nWelcome to the world of SUD, " << player.getName() << "\nYou have been blessed by Fortune!\n";
 	player.takeItem(this->getItem(rand() % this->howMuchItems()));
 
-	this->currentPosX = start_x;
-	this->currentPosY = start_y;
+	this->currentPosX = 10;
+	this->currentPosY = 10;
+	map[this->currentPosX][this->currentPosY]=6;
+	
+	int lvlUpCounter=0;
 	
 	while(true)
 	{
 		if(this->traveled)
 		{
-			cout << "[X=" << this->currentPosX << "," << "Y=" << this->currentPosY << "]\n";
+			//cout << map[currentPosX][currentPosY] << 
+			cout << "[X=" << this->currentPosX-10 << "," << "Y=" << this->currentPosY-10 << "]\n";
+			player.takeDMG(-1);
+			if(player.getHp()>player.getMaxHp())player.takeDMG(player.getHp() - player.getMaxHp());
 			this->traveled = false;
 		}
 		
-		if(map[currentPosX][currentPosY]==0)
+		if(map[currentPosX][currentPosY]==0 || map[currentPosX][currentPosY]==3)
 		{
 			int result;
-			Battle battle(player, enemies[rand() % 5]);
+			Battle battle(player, enemies[rand() % 15]);
 			cout << battle << "\n";
 			result=battle.fight(player);
-			if(result)
+			if(result == 1)
 			{
-				cout << "You slain your enemy! Take his belongings and march forward!\n";
+				cout << "You have slained your enemy! Take his belongings and march forward!\n";
+				lvlUpCounter++;
+				if(lvlUpCounter%3 == 1)
+				{
+					player.levelUp();
+					cout << "You leveled up by killing enough enemies!\n";
+				}
 			}
-			else
-			{
+			else if(result == 0)
+			{ 
 				gameOver;
 			}
-			map[currentPosX][currentPosY]=3;
+			
+			map[currentPosX][currentPosY]=5;
 		}
-		else if(map[currentPosX][currentPosY]==1)
+		else if(map[currentPosX][currentPosY]==4)
 		{
 			vector<Item> store;
 			for(int i=0; i<5; i++)
@@ -210,46 +251,57 @@ bool Sud::start()
 				store.push_back(items[rand() % 9]);
 			}
 			Shop shop("Welcome to the shop", player, store);
-			cout << shop << "\n";
-			shop.showStore();
+			cout << shop << "\n" << "Your gold: " << player.getGold() << "\n";
+			while(true)
+			{
+				shop.showStore();
 			
-			cout << "\t> ";
-			string command;
-			cin >> command;
-			if(command == "buy")
-			{
-				int item;
-				cin >> item;
-				shop.buy(item, player);
+				cout << "\t> ";
+				string command;
+				cin >> command;
+				if(command == "buy")
+				{
+					int item;
+					cin >> item;
+					shop.buy(item, player);
+				}
+				else if(command == "sell")
+				{
+					int item;
+					cin >> item;
+					shop.sell(item, player);
+				}
+				else if(command == "leave")
+				{
+					cout << "You go in your merry way, the trader leaves\n";
+					map[currentPosX][currentPosY]=5;
+					break;
+				}
+				else if(command == "help") 	
+				{
+					cout << "buy sell leave\n";
+				}
+				else if(command == "inv")
+				{
+					player.showInventory();
+				}
+				else
+					cout << inc_comm;
 			}
-			else if(command == "sell")
-			{
-				int item;
-				cin >> item;
-				shop.sell(item, player);
-			}
-			else if(command == "help") 	
-			{
-				cout << "buy sell";
-			}
-			else if(command == "leave")
-			{
-				cout << "You go in your merry way, the trader leaves\n";
-			}
-			else
-				cout << inc_comm;
-			map[currentPosX][currentPosY]=3;
 		}
-		else if(map[currentPosX][currentPosY]==2)
+		else if(map[currentPosX][currentPosY]==1 || map[currentPosX][currentPosY]==2)
 		{
-			Interaction interaction=events[rand() % 5];
-			interaction.interact(player);
-			map[currentPosX][currentPosY]=3;
+			events[rand() % 4].interact(player);
+			map[currentPosX][currentPosY]=5;
 		}
-		else if(map[currentPosX][currentPosY]==3)
+		else if(map[currentPosX][currentPosY]==5)
 		{
 			Zero zero(player);
 			cout << zero;	
+		}
+		else if(map[currentPosX][currentPosY]==6)
+		{
+			cout << "You are in your home village, you can rest\n";
 		}
 		
 		

@@ -22,7 +22,6 @@ class Sud
 {
 	private:
 		Player pl;
-		Event currentEvent;
 		bool traveled;
 		bool debug_mode;
 		

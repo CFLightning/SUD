@@ -15,7 +15,7 @@ class Character
 		int dmg;
 		int lvl;
 		
-		string description;
+		//string description;
 		string name;
 		Character(string, int, int, int);
 

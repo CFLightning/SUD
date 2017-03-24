@@ -19,9 +19,9 @@ Npc::Npc():Character("No name", 1, 0, 0)
 	this->hp = this->maxHp;
 }
 
-void Npc::dropItem(Player player)
+Item Npc::dropItem()
 {
-	player.takeItem(this->drop);	
+	return this->drop;	
 }
 
 void Npc::show()
@@ -30,8 +30,7 @@ void Npc::show()
 		 << this->name << "\n" 
 		 << this->hp << "/" << this->baseHp+this->lvl << "\tHP\n"
 		 << this->dmg << "\tdph\n"
-		 << this->lvl + 1 << "\tpoziom\n"
-		 << this->description << "\n";
+		 << this->lvl + 1 << "\tpoziom\n";
 }
 
 // Npc("antos", 10, 100, _items[10]);

@@ -16,8 +16,9 @@ int Battle::fight(Player& player)
 	{
 		string command;
 		
+		cout << "You have " << player.getDMG() << "Dmg, and " << player.getHp() << "/" << player.getMaxHp() << "\n";
 		cout << "Your enemy has " << enemy.getHp() << "/" << enemy.getMaxHp() 
-			 << "! Fight or run?\n";
+			 << " Hitpoints! Fight or run?\n";
 		cout << "\t> ";
 		cin >> command;
 		if(command == "fight")
@@ -29,11 +30,11 @@ int Battle::fight(Player& player)
 					 << " damage, he has now " << enemy.getHp() 
 					 << "/" << enemy.getMaxHp() << "\n";
 					 
-				if(enemy.getHp()<0)break;
+				if(enemy.getHp()<1)break;
 				
 				player.takeDMG(enemy.getDMG());
 				cout << "You recieve " << enemy.getDMG() 
-					 << " damage from your enemy, you now have" 
+					 << " damage from your enemy, you now have " 
 					 << player.getHp() << "/" << player.getMaxHp() << "\n";
 				
 			}			
@@ -45,19 +46,21 @@ int Battle::fight(Player& player)
 			{
 				cout << "You decide to run, you lose a lvl as punishment\n";
 				player.levelDown();
-				return false;
+				return 2;
 			}
 			else 
 				cout << "Your level is too low to run\n";
 		}
+		else 
+			cout << "Incorrect command, you can either fight or run\n";
 		if(player.getHp() <= 0)
 		{
 			return 0;
 		}
 		else if(enemy.getHp() <= 0)
 		{
+			player.takeItem(enemy.dropItem());
 			return 1;
-			enemy.dropItem(player);
 		}
 	}
 }

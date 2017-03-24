@@ -11,7 +11,7 @@ class Npc: public Character
 	private:
 	 Item drop;
 	public:
-	 void dropItem(Player);
+	 Item dropItem();
 	 Npc(string, int, int, int, Item);
 	 Npc();
 	 void show();
