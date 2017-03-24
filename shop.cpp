@@ -8,9 +8,9 @@ using namespace std;
 bool Shop::buy(int item, Player &player)
 {
 	if(player.getGold() < this->store[item].getPrice())
-	{	
-		cout << "Not enough monies\n";
-		
+	{
+		cout << "Not enough monies dewd\n";
+
 		return false;
 	}
 	else
@@ -18,20 +18,20 @@ bool Shop::buy(int item, Player &player)
 		player.spendGold(this->store[item].getPrice());
 		cout << "\nBought item: " << this->store[item] << "\n";
 		player.takeItem(this->store[item]);
-		
+
 		return true;
 	}
-	
+
 	return false;
 }
 
 bool Shop::sell(int item, Player &player)
 {
 	cout << "Sold item: " << player.getItemFromInventory(item) << "\nNo returns\n";
-	
+
 	player.addGold(player.getItemFromInventory(item).getPrice());
 	player.giveItem(item);
-	
+
 	return true;
 }
 
