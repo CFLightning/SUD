@@ -9,7 +9,7 @@ bool Shop::buy(int item, Player &player)
 {
 	if(player.getGold() < this->store[item].getPrice())
 	{
-		cout << "Not enough monies dewd\n";
+		cout << "Not enough monies\n";
 
 		return false;
 	}
